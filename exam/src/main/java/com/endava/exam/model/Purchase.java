@@ -5,6 +5,7 @@ import com.endava.exam.model.enums.PaymentType;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -38,6 +39,7 @@ public class Purchase {
     )
     private List<Item> items;
 
+    @Nullable
     private Double cashAmount;
 
 }
