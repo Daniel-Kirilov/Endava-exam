@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 @Repository
-public interface SuperMarketRepository extends JpaRepository<Supermarket, String> {
+public interface SupermarketRepository extends JpaRepository<Supermarket, String> {
     Optional<Supermarket> findById(String id);
 
     boolean existsByName(String name);

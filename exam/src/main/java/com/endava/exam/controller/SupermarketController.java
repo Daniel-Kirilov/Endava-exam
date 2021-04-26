@@ -1,10 +1,10 @@
 package com.endava.exam.controller;
 
 import com.endava.exam.dto.supermarket_dtos.ResponseGetSupermarketByIdDto;
-import com.endava.exam.dto.supermarket_dtos.ResponseSuperMarketDto;
-import com.endava.exam.dto.supermarket_dtos.ResponseSuperMarketWithItemsDto;
+import com.endava.exam.dto.supermarket_dtos.ResponseSupermarketDto;
+import com.endava.exam.dto.supermarket_dtos.ResponseSupermarketWithItemsDto;
 import com.endava.exam.model.Supermarket;
-import com.endava.exam.service.SuperMarketService;
+import com.endava.exam.service.SupermarketService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -21,9 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/v1/supermarkets")
 @RequiredArgsConstructor
-public class SuperMarketController {
+public class SupermarketController {
 
-    private final SuperMarketService superMarketService;
+    private final SupermarketService superMarketService;
     private final ModelMapper modelMapper;
 
 
@@ -35,16 +35,16 @@ public class SuperMarketController {
             @Valid @RequestParam(value = "workHours") String workHours) {
 
         Supermarket superMarket = superMarketService.createSupermarket(name, address, phoneNumber, workHours);
-        return new ResponseEntity(modelMapper.map(superMarket, ResponseSuperMarketDto.class), HttpStatus.CREATED);
+        return new ResponseEntity(modelMapper.map(superMarket, ResponseSupermarketDto.class), HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/add-items", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ResponseSuperMarketWithItemsDto> addItemsInSuperMarket(
+    public ResponseEntity<ResponseSupermarketWithItemsDto> addItemsInSuperMarket(
             @Valid @RequestParam @NotNull String superMarketId,
             @Valid @RequestParam @NotEmpty List<String> itemsId) {
 
         Supermarket superMarket = superMarketService.addItemsToSuperMarket(superMarketId, itemsId);
-        return ResponseEntity.ok(modelMapper.map(superMarket, ResponseSuperMarketWithItemsDto.class));
+        return ResponseEntity.ok(modelMapper.map(superMarket, ResponseSupermarketWithItemsDto.class));
     }
 
     @GetMapping(value = "/get-by-id/{superMarketId}", produces = MediaType.APPLICATION_JSON_VALUE)

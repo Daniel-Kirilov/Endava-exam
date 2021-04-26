@@ -42,14 +42,14 @@ public class PurchaseController {
     }
 
     @GetMapping(value = "/get-all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<ResponseGetAllPurchasesDto>> getAll() {
+    public ResponseEntity getAll() {
 
         List<ResponseGetAllPurchasesDto> purchases = purchaseService.getAllPurchases()
                 .stream()
                 .map(purchase -> modelMapper.map(purchase, ResponseGetAllPurchasesDto.class))
                 .collect(Collectors.toList());
 
-        return new ResponseEntity<List<ResponseGetAllPurchasesDto>>(purchases,
+        return new ResponseEntity(purchases,
                 HttpStatus.OK);
     }
 
